@@ -377,35 +377,6 @@ class Trainer():
             # model
             pred = self.model(x)
 
-            # flops = 0
-            # flops += FlopCountAnalysis(self.model, x).total()
-            # inp = torch.rand(1, 3, 224, 224).to(device)
-            #
-            # # Count the number of FLOPs
-            # count_ops(self.model, inp, ignore_layers=['SAN_stage_1', 'SAN_stage_2', 'SAN_stage_3', 'SAN_stage_4', 'boundary_1', 'boundary_3'])
-            # print('flopssssssssssss', flops / 1e9)
-
-            # weights_keys = self.model.state_dict().keys()
-            #
-            # selected_keys_classify_1 = []
-            # selected_keys_classify_2 = []
-            # for key in weights_keys:
-            #     if "classifier_1.weight" in key:
-            #         selected_keys_classify_1.append(key)
-            #     if "classifier_2.weight" in key:
-            #         selected_keys_classify_2.append(key)
-            #
-            # for key in selected_keys_classify_1:
-            #     if "num_batches_tracked" in key:
-            #         continue
-            #     weights_t = self.model.state_dict()[key]
-            # classsifier_1_weights = weights_t.squeeze()
-            # for key in selected_keys_classify_2:
-            #     if "num_batches_tracked" in key:
-            #         continue
-            #     weights_t = self.model.state_dict()[key]
-            # classsifier_2_weights = weights_t.squeeze()
-            # print(classsifier_1_weights.size(),classsifier_2_weights.size())
 
             if isinstance(pred, tuple):
                 pred_2 = pred[1]
