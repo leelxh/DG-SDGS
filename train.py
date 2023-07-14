@@ -372,8 +372,6 @@ class Trainer():
                 x, y, boundary = x.to(self.device), y.to(device=self.device, dtype=torch.long), boundary.to(
                     device=self.device, dtype=torch.long)
 
-            y = torch.squeeze(y, 1)
-            # print('yyyy', y.shape)
             self.optimizer.zero_grad()
             
             # model
@@ -411,17 +409,16 @@ class Trainer():
 
             if isinstance(pred, tuple):
                 pred_2 = pred[1]
-                boundary_4 = pred[2]
-                boundary_5 = pred[3]
+                boundary_1 = pred[2]
+                boundary_3 = pred[3]
                 pred = pred[0]
 
             loss_main = self.loss(pred, y)
 
-            boundary_4 = torch.squeeze(boundary_4, 1)
-            boundary_5 = torch.squeeze(boundary_5, 1)
+            boundary_1 = torch.squeeze(boundary_1, 1)
+            boundary_3 = torch.squeeze(boundary_3, 1)
 
-            loss_boundary = cross_entropy_loss2d(boundary_4, boundary) + cross_entropy_loss2d(boundary_5, boundary)
-
+            loss_boundary = cross_entropy_loss2d(boundary_1, boundary) + cross_entropy_loss2d(boundary_3, boundary)
 
             cur_loss = loss_main + loss_boundary
 
